@@ -13,7 +13,7 @@ class Logger{
         return this.instance;
     }
     log(type: Notify, orderId: number, message:string):void{
-        console.log(`[LOG] ${type} - ${orderId} - ${message}`);
+        console.log(`[LOG] ${type} - ${orderId} - ${new Date().toISOString()} - ${message}`);
     }
 }
 //interface for types of Notification
