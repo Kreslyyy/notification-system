@@ -4,6 +4,7 @@ type Notify = 'sms'|'email'|'push';
 //Logger
 class Logger{
     private static instance:Logger;
+    private logs:string[];
     private constructor(){}
 
     static getInstance():Logger{
@@ -13,7 +14,12 @@ class Logger{
         return this.instance;
     }
     log(type: Notify, orderId: number, message:string):void{
-        console.log(`[LOG] ${type} - ${orderId} - ${new Date().toISOString()} - ${message}`);
+        const logMsg = `[LOG] ${type} - ${orderId} - ${new Date().toISOString()} - ${message}`;
+        this.logs.push(logMsg);
+        console.log(logMsg);
+    }
+    getLogs():string[]{
+        return this.logs;
     }
 }
 //interface for types of Notification
