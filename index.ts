@@ -1,5 +1,5 @@
 //types of Notification
-type Notify = 'sms'|'email'|'push';
+type Notify = 'sms'|'email'|'push'|'telegram';
 
 //Logger
 class Logger{
@@ -44,6 +44,13 @@ class PushNotification implements Notifier{
         console.log(`Заказ №${order.orderId} - ${message}`);
     }
 }
+
+class TelegramNotification implements Notifier{
+    send(order: Order, message: string): void {
+        console.log(`Заказ №${order.orderId} - ${message}`);
+    }
+}
+
 //factory
 class NotificationFactory{
     static create(type:Notify):Notifier{
@@ -54,6 +61,8 @@ class NotificationFactory{
                 return new EmailNotification();
             case "push":
                 return new PushNotification();
+            case "telegram":
+                return new TelegramNotification();
             default:
                 throw new Error('Неизвестный тип уведомления');
         }
